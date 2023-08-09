@@ -23,7 +23,7 @@ pip install pyonemap
 from pyonemap import OneMap
 
 # Initialize the OneMapAPI client
-onemap = OneMap()
+onemap = OneMap('<--Insert your OneMap API token here-->')
 
 # Get location details
 location = onemap.search("5 Havelock Road")
