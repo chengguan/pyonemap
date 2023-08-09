@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools >= 42", "wheel", "twine"]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 88
+target-version = ['py36', 'py37', 'py38', 'py39']
+
+[tool.flake8]
+max-line-length = 88
+
+[tool.mypy]
+python_version = 3.9
+
+[project]
+name = "pyonemap"
+version = "0.6.0"
+description = "PyOneMap is a Python package that provides a convenient and easy-to-use interface for interacting with the Singapore Land Authority's (SLA) OneMap API. With PyOneMap, you can retrieve various geospatial data and information from OneMap's services directly from your Python code."
