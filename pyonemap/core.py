@@ -101,10 +101,10 @@ class OneMap:
         otherFeatures string Optional. 
         Values: Y or N. Allows uses the page to retrieve information on reservoirs, playgrounds, jetties, etc. Default is N.
     '''
-    def revGeoCode(self, lon, lat, buffer=40, addressType='All', otherFeatures='N'):
+    def revGeoCode(self, lat, lon, buffer=40, addressType='All', otherFeatures='N'):
         endpoint = f"/api/public/revgeocode"
 
-        params = {"location": f'{lon},{lat}', 
+        params = {"location": f'{lat},{lon}', 
                   "buffer": buffer, 
                   "addressType": addressType, 
                   "otherFeatures": otherFeatures}
