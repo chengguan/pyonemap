@@ -1,0 +1,47 @@
+# Ignore compiled Python files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore virtual environment folders
+venv/
+env/
+*.env
+
+# Ignore project-specific files
+*.egg-info/
+dist/
+build/
+*.log
+
+# Ignore IDE and editor specific files
+.vscode/
+.idea/
+*.pycharm*
+*.sublime*
+
+# Ignore system files and directories
+.DS_Store
+Thumbs.db
+
+# Ignore configuration files
+*.config
+
+# Ignore sensitive or private data
+secrets.ini
+config.ini
+
+# Ignore documentation build output
+docs/_build/
+
+# Ignore local development environment files
+.env.local
+.env.dev
+
+# Ignore package distribution files
+*.whl
+*.egg
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
