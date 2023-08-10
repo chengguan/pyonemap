@@ -2,6 +2,8 @@
 
 PyOneMap is a Python package that provides a convenient and easy-to-use interface for interacting with the Singapore Land Authority's (SLA) OneMap API. With PyOneMap, you can retrieve various geospatial data and information from OneMap's services directly from your Python code.
 
+This is built using the [API doc](https://www.onemap.gov.sg/apidocs/apidocs) release in 2023. The old API documentation and APIs will be available until 31 August 2023.
+
 ## Features
 
 - Retrieve location details such as addresses, postal codes, and coordinates.
@@ -49,7 +51,6 @@ python3 -m unittest discover -s tests -p "test_*.py"
 $ python3 setup.py sdist bdist_wheel
 $ twine upload ./dist/*
 ```
-
 
 ## Source
 https://github.com/chengguan/pyonemap
