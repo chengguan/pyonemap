@@ -37,6 +37,20 @@ print(geocode)
 
 ```
 
+## Unit Test
+
+```python
+python3 -m unittest discover -s tests -p "test_*.py"
+```
+
+## Building and Uploading
+
+```
+$ python3 setup.py sdist bdist_wheel
+$ twine upload ./dist/*
+```
+
+
 ## Source
 https://github.com/chengguan/pyonemap
 

@@ -14,5 +14,5 @@ python_version = 3.9
 
 [project]
 name = "pyonemap"
-version = "0.6.0"
+version = "0.7.0"
 description = "PyOneMap is a Python package that provides a convenient and easy-to-use interface for interacting with the Singapore Land Authority's (SLA) OneMap API. With PyOneMap, you can retrieve various geospatial data and information from OneMap's services directly from your Python code."
