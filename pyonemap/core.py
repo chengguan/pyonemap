@@ -355,11 +355,11 @@ class OneMap:
 
 if __name__ == "__main__":
     # Obtain the access token using email and password:
-    response = OneMap.getToken('your_email@email.com', 'your_password')
-    access_token = response['access_token']
+    # response = OneMap.getToken('your_email@email.com', 'your_password')
+    # access_token = response['access_token']
     
     # Or, pre-set it as environmental variable:
-    #access_token = os.environ.get("ONEMAP_TOKEN")
+    access_token = os.environ.get("ONEMAP_TOKEN")
 
     onemap = OneMap(access_token)
     
