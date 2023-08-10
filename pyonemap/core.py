@@ -261,6 +261,98 @@ class OneMap:
         response = self._make_request(endpoint, params)
         return response
 
+    '''
+        queryName string REQUIRED
+        Query name. Themes’ query names can be retrieved using Get All Themes Info service.
+
+        dateTime string REQUIRED
+        The datetime in YYYY-MM-DDTHH:MM:SS:FFFZ. EG: 2023-06-15T16:00:00.000Z format.
+    '''
+    def checkThemeStatus(self, queryName, dateTime=''):
+        endpoint = f"/api/public/themesvc/checkThemeStatus"
+
+        if dateTime == '':
+            now = datetime.now()
+            dateTime = now.strftime('YYYY-MM-DDTHH:MM:SS:FFFZ')
+
+        params = {"queryName": queryName, "dateTime": dateTime}
+        response = self._make_request(endpoint, params)
+        return response
+
+    '''
+        queryName string REQUIRED
+        Enables users to retrieve theme information. Themes' query names can be retrieved using Get All Themes Info service.
+    '''
+    def getThemeInfo(self, queryName):
+        endpoint = f"/api/public/themesvc/getThemeInfo"
+        params = {"queryName": queryName}
+        response = self._make_request(endpoint, params)
+        return response
+
+    '''
+        moreInfo string
+        Optional. Values: Y, N. Returns more information of themes such as icon names, category names, and theme owners if set as Y. 
+        Default is N.
+    '''
+    def getAllThemesInfo(self, moreInfo='N'):
+        endpoint = f"/api/public/themesvc/getAllThemesInfo"
+        params = {"moreInfo": moreInfo}
+        response = self._make_request(endpoint, params)
+        return response
+
+    '''
+        queryName string REQUIRED
+        Enables users to retrieve theme information. Themes' query names can be retrieved using Get All Themes Info service.
+        
+        extents string Optional. 
+        Boundary provided by user. EG: 1.291789,103.7796402,1.3290461,103.8726032
+    '''
+    def retrieveTheme(self, queryName, extents=''):
+        endpoint = f"/api/public/themesvc/retrieveTheme"
+        if extents == '':
+            params = {"queryName": queryName}
+        else:
+            params = {"queryName": queryName, "extents": extents}
+        response = self._make_request(endpoint, params)
+        return response
+        
+    '''
+        year string Optional. 
+        If not specified, the latest data will be provided. Else, values available are 1998, 2008, 2014, and 2019.
+    '''
+    def getAllPlanningarea(self, year):
+        endpoint = f"/api/public/popapi/getAllPlanningarea"
+        params = {"year": year}
+        response = self._make_request(endpoint, params)
+        return response
+
+    '''
+        year string Optional. 
+        If not specified, the latest data will be provided. Else, values available are 1998, 2008, 2014, and 2019.
+    '''
+    def getPlanningareaNames(self, year):
+        endpoint = f"/api/public/popapi/getPlanningareaNames"
+        params = {"year": year}
+        response = self._make_request(endpoint, params)
+        return response
+
+    '''
+        latitude string REQUIRED
+        This represents the latitude of the point.
+
+        longitude string REQUIRED
+        This represents the longitude of the point.
+
+        year string Optional. 
+        If not specified, the latest data will be provided. Else, values available are 1998, 2008, 2014, and 2019.
+    '''
+    def getPlanningArea(self, lat, lon, year):
+        endpoint = f"/api/public/popapi/getPlanningArea"
+        params = {"lat": lat, "lon": lon, "year": year}
+        response = self._make_request(endpoint, params)
+        return response
+
+
 if __name__ == "__main__":
     # Obtain the access token using email and password:
     response = OneMap.getToken('your_email@email.com', 'your_password')
@@ -303,7 +395,7 @@ if __name__ == "__main__":
     #       'LATITUDE': '1.3258283432645641', 'LONGITUDE': '103.90058110378057'}]}
 
     route = onemap.route(1.320981, 103.844150, 1.326762, 103.8559)
-    print(route)
+    print(route['requestParameters']['preferredRoutes'])
 
     coordinate = onemap.convert4326to3857(1.319728905, 103.8421581)
     print(coordinate)
@@ -328,3 +420,38 @@ if __name__ == "__main__":
     coordinate = onemap.convert3857to4326(146924.54200324757, 11559656.16256661)
     print(coordinate)
     # {'latitude': 1.3197289050000036, 'longitude': 103.8421581}
+
+    themeStatus = onemap.checkThemeStatus('kindergartens')
+    print(themeStatus)
+    # {'UpdatedFile': True}
+
+    themeInfo = onemap.getThemeInfo('kindergartens')
+    print(themeInfo)
+    # {'Theme_Names': [{'THEMENAME': 'Kindergartens', 'QUERYNAME': 'kindergartens'}]}
+
+    allThemes = onemap.getAllThemesInfo()
+    print(f'Found {len(allThemes["Theme_Names"])} themes.')
+    # {'Theme_Names': [{'THEMENAME': 'Kindergartens', 'QUERYNAME': 'kindergartens'}]}
+
+    searchTheme = 'dengue_cluster'
+    theme = onemap.retrieveTheme(searchTheme)
+    print(f'{len(theme["SrchResults"])} of {searchTheme} found.')
+    # {'SrchResults': [{'FeatCount': 37, 'Theme_Name': 'Dengue Clusters', 'Category': 'Health', 'Owner': 'NATION ...
+
+    boundary = '1.291789%2C103.7796402%2C1.3290461%2C103.8726032'
+    exTheme = onemap.retrieveTheme(searchTheme, boundary)
+    print(f'{len(theme["SrchResults"])} of {searchTheme} found (with boundaries).')
+    # {'SrchResults': [{'FeatCount': 37, 'Theme_Name': 'Dengue Clusters', 'Category': 'Health', 'Owner': 'NATION ...
+
+    year = '2019'
+    allPlanningArea = onemap.getAllPlanningarea(year)
+    print(f'{len(allPlanningArea["SearchResults"])} planning areas found for the year {year}.')
+
+    planningAreaNames = onemap.getPlanningareaNames(year)
+    print(f'{len(planningAreaNames)} planning area names found for the year {year}.')
+
+    lat = 1.3
+    lon = 103.8
+    planningArea = onemap.getPlanningArea(lat, lon, year)
+    print(f'({lat}, {lon}) is located in planning area {planningArea[0]["pln_area_n"]} in the year of {year}.')
+
