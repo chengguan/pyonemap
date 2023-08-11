@@ -1,3 +1,3 @@
-from .core import OneMap
+from .onemap import OneMap
 
-__version__ = '0.1.0'
+__version__ = '0.7.0'
