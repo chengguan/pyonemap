@@ -1,7 +1,6 @@
 __author__ = "Teo Cheng Guan"
 __copyright__ = "Copyright (C) 2023 Teo Cheng Guan"
 __license__ = "MIT"
-__version__ = "1.0"
 
 import requests
 

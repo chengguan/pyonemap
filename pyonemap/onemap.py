@@ -1,18 +1,17 @@
 __author__ = "Teo Cheng Guan"
 __copyright__ = "Copyright (C) 2023 Teo Cheng Guan"
 __license__ = "MIT"
-__version__ = "1.0"
 
 import requests
 import os
 from datetime import datetime
-from .core import Core
-from .reverse_geocode import ReverseGeocode
-from .routing import Routing
-from .converter import Converter
-from .themes import Themes
-from .planning_area import PlanningArea
-from .population_query import PopulationQuery
+from core import Core
+from reverse_geocode import ReverseGeocode
+from routing import Routing
+from converter import Converter
+from themes import Themes
+from planning_area import PlanningArea
+from population_query import PopulationQuery
 
 class OneMap:
     def __init__(self, api_key=None):
@@ -153,3 +152,21 @@ if __name__ == "__main__":
     planningArea = onemap.planningArea.getPlanningArea(lat, lon, year)
     print(f'({lat}, {lon}) is located in planning area {planningArea[0]["pln_area_n"]} in the year of {year}.')
 
+    print(onemap.populationQuery.getEconomicStatus("Bedok", 2010))
+    print(onemap.populationQuery.getEducationAttending("Bedok", 2020))
+    print(onemap.populationQuery.getEthnicGroup("Bedok", 2020))
+    print(onemap.populationQuery.getHouseholdMonthlyIncomeWork("Bedok", 2020))
+    print(onemap.populationQuery.getHouseholdSize("Bedok", 2020))
+    print(onemap.populationQuery.getHouseholdStructure("Bedok", 2020))
+    print(onemap.populationQuery.getIncomeFromWork("Bedok", 2020))
+    print(onemap.populationQuery.getIndustry("Bedok", 2020))
+    print(onemap.populationQuery.getLanguageLiterate("Bedok", 2020))
+    print(onemap.populationQuery.getMaritalStatus("Bedok", 2020))
+    print(onemap.populationQuery.getModeOfTransportSchool("Bedok", 2020))
+    print(onemap.populationQuery.getModeOfTransportWork("Bedok", 2020))
+    print(onemap.populationQuery.getPopulationAgeGroup("Bedok", 2020))
+    print(onemap.populationQuery.getReligion("Bedok", 2020))
+    print(onemap.populationQuery.getSpokenAtHome("Bedok", 2020))
+    print(onemap.populationQuery.getTenancy("Bedok", 2020))
+    print(onemap.populationQuery.getTypeOfDwellingHousehold("Bedok", 2020))
+    print(onemap.populationQuery.getTypeOfDwellingPop("Bedok", 2020))
