@@ -5,7 +5,7 @@ __license__ = "MIT"
 import requests
 import os
 from datetime import datetime
-from core import Core
+from .core import Core
 
 class Converter:
     def __init__(self, api_key=None):

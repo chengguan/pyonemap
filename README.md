@@ -125,6 +125,26 @@ print(geocode)
     print(onemap.populationQuery.getTypeOfDwellingPop("Bedok", 2020))
 ```
 
+## Use case: Walk distance between 2 locations
+
+```python
+from pyonemap import OneMap
+
+# Obtain access token using email and password.
+response = OneMap.getToken('your_email@email.com', 'your_password')
+access_token = response['access_token']
+
+# Instantiate OneMap object for API query.
+onemap = OneMap(access_token)
+
+# Search for a address using postal code.
+start = onemap.search("380016", 'Y', 'Y')
+end = onemap.search("658713", 'Y', 'Y')
+route = onemap.routing.route(start["results"][0]["LATITUDE"],start["results"][0]["LONGITUDE"],end["results"][0]["LATITUDE"],end["results"][0]["LONGITUDE"], "walk")
+route['route_summary']
+# {'start_point': '', 'end_point': '', 'total_time': 11662, 'total_distance': 16198}
+```
+
 ## Unit Test
 
 ```python

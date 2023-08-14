@@ -5,13 +5,13 @@ __license__ = "MIT"
 import requests
 import os
 from datetime import datetime
-from core import Core
-from reverse_geocode import ReverseGeocode
-from routing import Routing
-from converter import Converter
-from themes import Themes
-from planning_area import PlanningArea
-from population_query import PopulationQuery
+from .core import Core
+from .reverse_geocode import ReverseGeocode
+from .routing import Routing
+from .converter import Converter
+from .themes import Themes
+from .planning_area import PlanningArea
+from .population_query import PopulationQuery
 
 class OneMap:
     def __init__(self, api_key=None):

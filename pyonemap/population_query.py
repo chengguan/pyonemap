@@ -5,7 +5,7 @@ __license__ = "MIT"
 import requests
 import os
 from datetime import datetime
-from core import Core
+from .core import Core
 
 class PopulationQuery:
     def __init__(self, api_key=None):
@@ -268,7 +268,7 @@ class PopulationQuery:
         params = {"planningArea": planningArea, "year": year}
         response = self.__core.make_request(endpoint, params)
         return response
-        
+
 if __name__ == "__main__":
     pass
 
